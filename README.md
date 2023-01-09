@@ -20,6 +20,8 @@ while sleep 1; do ./test.sh; done;
 docker compose up -d
 ```
 ## Grafana Queries
+
+### Server View
 CPU Usage:
 ```
 100 * avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[1m]))
@@ -27,4 +29,11 @@ CPU Usage:
 Memory Usage:
 ```
 1e-9 * (node_memory_MemTotal_bytes - (node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes))
+```
+### PID View
+```
+cpu_usage{pid="x"}
+```
+```
+memory_usage{pid="x"}
 ```
